@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "street_address": {
+      "type": "object",
+      "properties": {
+        "kjakja": {
+          "$ref": "#defination/abc"
+        }
+      },
+      "country": {
+        "enum": [
+          "United States of America",
+          "Canada",
+          "Netherlands"
+        ]
+      }
+    }
+  },
+  "required": [
+    "street_address"
+  ]
+}

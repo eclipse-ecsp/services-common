@@ -1,0 +1,133 @@
+{
+  "EventID": "VEHICLE_PROFILE_CREATED_NOTIFICATION_EVENT",
+  "Version": "1.1",
+  "Timestamp": 1536994293896,
+  "Data": {
+    "vehicleProfile": {
+      "schemaVersion": "1.0",
+      "vin": "12UYA34567L000008",
+      "vehicleId": "12UYA34567L000008",
+      "createdOn": 1536994293849,
+      "updatedOn": 1536994293849,
+      "productionDate": 1531858633711,
+      "saleDate": 1531858633711,
+      "vehicleAttributes": {
+        "make": "brandName",
+        "model": "modelName",
+        "marketingColor": "Pearl White",
+        "baseColor": "White",
+        "modelYear": "2019",
+        "destinationCountry": "US",
+        "engineType": "G",
+        "bodyStyle": "Coupe"
+      },
+      "authorizedUsers": [
+        {
+          "userId": "userId",
+          "role": "string",
+          "createdOn": 1531860532757
+        }
+      ],
+      "modemInfo": {
+        "iccid": "123987456999",
+        "imei": "12484977399",
+        "msisdn": "7720075199",
+        "imsi": "7895412789321799"
+      },
+      "vehicleArchType": "hu",
+      "ecus": {
+        "hu": {
+          "swVersion": "1.58b",
+          "hwVersion": "1.54",
+          "partNumber": "187469231",
+          "os": "Android",
+          "manufacturer": "Harman",
+          "ecuType": "VP4",
+          "serialNo": "9874265387896345",
+          "clientId": "ZH33B29TBC412",
+          "capabilities": {
+            "services": [
+              {
+                "serviceId": "VRC"
+              },
+              {
+                "serviceId": "TANF"
+              },
+              {
+                "serviceId": "ECALL"
+              },
+              {
+                "serviceId": "RO"
+              },
+              {
+                "serviceId": "SQDF"
+              },
+              {
+                "serviceId": "VFND"
+              },
+              {
+                "serviceId": "RSA"
+              },
+              {
+                "serviceId": "Navigation",
+                "version": "1.1.2"
+              },
+              {
+                "serviceId": "Navigation",
+                "version": "1.0.2"
+              },
+              {
+                "serviceId": "STOLEN-VEHICLE"
+              },
+              {
+                "serviceId": "BCALL"
+              }
+            ]
+          },
+          "provisionedServices": {
+            "services": [
+              {
+                "serviceId": "VRC"
+              },
+              {
+                "serviceId": "TANF"
+              },
+              {
+                "serviceId": "ECALL"
+              },
+              {
+                "serviceId": "RO"
+              },
+              {
+                "serviceId": "SQDF"
+              },
+              {
+                "serviceId": "VFND"
+              },
+              {
+                "serviceId": "RSA"
+              },
+              {
+                "serviceId": "Navigation",
+                "version": "1.1.2"
+              },
+              {
+                "serviceId": "Navigation",
+                "version": "1.0.2"
+              },
+              {
+                "serviceId": "STOLEN-VEHICLE"
+              },
+              {
+                "serviceId": "BCALL"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "VehicleId": "HU5BINKIUA30666",
+  "Timezone": 0,
+  "DeviceDeliveryCutoff": -1
+}

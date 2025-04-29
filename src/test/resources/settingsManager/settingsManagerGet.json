@@ -1,0 +1,77 @@
+{
+  "settings": [
+    {
+      "EventID": "Config",
+      "Version": "1.0",
+      "Timestamp": 1537466278479,
+      "Data": {
+        "settingId": "UpdateEcallPhoneNumbers",
+        "configurationObject": {
+          "phoneList": null,
+          "phoneListMessages": [
+            {
+              "enableCallType": true,
+              "primaryPhoneNumber": "12345678901",
+              "secondaryPhoneNumber": "12345678902",
+              "callTypeEnum": "SOS"
+            },
+            {
+              "enableCallType": false,
+              "primaryPhoneNumber": "12345678903",
+              "secondaryPhoneNumber": "12345678904",
+              "callTypeEnum": "Assist1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "EventID": "Config",
+      "Version": "1.0",
+      "Timestamp": 1537466278479,
+      "Data": {
+        "settingId": "UpdateRSAPhoneNumbers",
+        "configurationObject": {
+          "phoneList": null,
+          "phoneListMessages": [
+            {
+              "enableCallType": true,
+              "primaryPhoneNumber": "12345678905",
+              "secondaryPhoneNumber": "12345678906",
+              "callTypeEnum": "Assist1",
+              "callCenter": "CALL_CENTER_5"
+            },
+            {
+              "enableCallType": true,
+              "primaryPhoneNumber": "12345678907",
+              "secondaryPhoneNumber": "12345678908",
+              "callTypeEnum": "Assist2",
+              "callCenter": "CALL_CENTER_4"
+            },
+            {
+              "enableCallType": true,
+              "primaryPhoneNumber": "12345678909",
+              "secondaryPhoneNumber": "12345678910",
+              "callTypeEnum": "Assist3",
+              "callCenter": "CALL_CENTER_3"
+            },
+            {
+              "enableCallType": false,
+              "primaryPhoneNumber": "12345678911",
+              "secondaryPhoneNumber": "12345678912",
+              "callTypeEnum": "Assist4",
+              "callCenter": "CALL_CENTER_2"
+            },
+            {
+              "enableCallType": false,
+              "primaryPhoneNumber": "12345678913",
+              "secondaryPhoneNumber": "12345678914",
+              "callTypeEnum": "IVA",
+              "callCenter": "CALL_CENTER_1"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

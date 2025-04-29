@@ -1,0 +1,57 @@
+{
+  "message": "SUCCESS",
+  "data": [
+    {
+      "vehicleId": "HU5ABCDEF99010",
+      "role": "king"
+    },
+    {
+      "vehicleId": "HU5ABCDEF99007",
+      "role": "king"
+    },
+    {
+      "vehicleId": "HU5ABCDEF99009",
+      "role": "king"
+    },
+    {
+      "vehicleId": "HU5ABCDEF99005",
+      "role": "king"
+    },
+    {
+      "vehicleId": "HU5ABCDEF99006",
+      "role": "king"
+    },
+    {
+      "vehicleId": "HU5ABCDEF99008",
+      "role": "king"
+    },
+    {
+      "vehicleId": "NANDA_VEHICLE_12345",
+      "role": "VEHICLE_OWNER"
+    },
+    {
+      "vehicleId": "NANDA12345",
+      "role": "VEHICLE_OWNER"
+    },
+    {
+      "vehicleId": "MANDA12345",
+      "role": "VEHICLE_OWNER"
+    },
+    {
+      "vehicleId": "NAND1234",
+      "role": "VEHICLE_OWNER"
+    },
+    {
+      "vehicleId": "NAND336",
+      "role": "VEHICLE_OWNER"
+    },
+    {
+      "vehicleId": "NAN123",
+      "role": "VEHICLE_OWNER"
+    },
+    {
+      "vehicleId": "NAND123",
+      "role": "VEHICLE_OWNER"
+    }
+  ]
+}

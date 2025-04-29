@@ -1,0 +1,35 @@
+{
+  "EventID": "VEHICLE_PROFILE_CHANGED_NOTIFICATION_EVENT",
+  "Version": "1.1",
+  "Timestamp": 1534365034095,
+  "Data": {
+    "changeDescriptions": [
+      {
+        "key": "modemInfo",
+        "path": "modemInfo",
+        "old": {
+          "iccid": "123987456963",
+          "imei": "12484977388",
+          "msisdn": "7895412789321748",
+          "imsi": "7895412789321748"
+        },
+        "changed": {
+          "iccid": "123987456969",
+          "imei": "12484977388",
+          "msisdn": "7895412789321749",
+          "imsi": "7895412789321748"
+        }
+      }
+    ],
+    "customExtension": {
+      "make": "BrandName",
+      "model": "ModelName"
+    }
+  },
+  "RequestId": null,
+  "SourceDeviceId": null,
+  "VehicleId": "5b748bf514ba2c35f558d830",
+  "MessageId": null,
+  "CorrelationId": null,
+  "BizTransactionId": null
+}

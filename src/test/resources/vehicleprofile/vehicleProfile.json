@@ -1,0 +1,38 @@
+{
+  "message": "SUCCESS",
+  "data": [
+    {
+      "dummy": true,
+      "vin": "0d7b2022-e993-4bec-8672-0118626df892",
+      "authorizedUsers": [
+        {
+          "userId": "string",
+          "role": "string",
+          "tc": null,
+          "createdOn": "2018-07-17T20:48:52.757+0000"
+        },
+        {
+          "userId": "userID",
+          "role": "VEHICLE_OWNER",
+          "tc": null,
+          "createdOn": "2018-08-26T13:50:07.150+0000"
+        }
+      ],
+      "vehicleId": "12UYA34567L000008",
+      "capabilities": [],
+      "provisionedServices": [],
+      "vehicleAttributes": {
+        "make": "dummy",
+        "model": "dummy",
+        "marketingColor": null,
+        "baseColor": null,
+        "modelYear": "dummy",
+        "destinationCountry": null,
+        "engineType": null,
+        "bodyStyle": null,
+        "bodyType": null,
+        "name": "150_2001"
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "data": {
+    "soldRegion": "LATAM",
+    "blockEnrollment": "false",
+    "authorizedPartners": {
+      "ABCDEF01": {
+        "partnerId": "ABCDEF01",
+        "serviceClaims": {
+          "RDU": {
+            "start": "{start001}",
+            "expire": "{expire001}"
+          },
+          "ROTRUNK": {
+            "start": "{start001}",
+            "expire": "{expire001}"
+          }
+        }
+      },
+      "7qwertyuiopasdfghjkl": {
+        "partnerId": "7qwertyuiopasdfghjkl",
+        "serviceClaims": {
+          "RDL": {
+            "start": "{start001}",
+            "expire": "{expire001}"
+          },
+          "ROTRUNK": {
+            "start": "{start001}",
+            "expire": "{expire001}"
+          }
+        }
+      }
+    }
+  }
+}

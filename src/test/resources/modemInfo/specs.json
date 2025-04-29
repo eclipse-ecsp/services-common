@@ -1,0 +1,38 @@
+[
+  {
+    "operation": "shift",
+    "spec": {
+      "Data": {
+        "changeDescriptions": {
+          "*": {
+            "key": {
+              "modemInfo": {
+                "@2": {
+                  "@(6,VehicleId)": "VIN",
+                  "changed": {
+                    "iccid": "ICCID",
+                    "eid": "EID"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "customExtension": {
+          "make": "brandName",
+          "model": "ModelName"
+        }
+      }
+    }
+  },
+  {
+    "operation": "default",
+    "spec": {
+      "ICCID": null,
+      "EID": null,
+      "VIN": null,
+      "Make": null,
+      "Model": null
+    }
+  }
+]
