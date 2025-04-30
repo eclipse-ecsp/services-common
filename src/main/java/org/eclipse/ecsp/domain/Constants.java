@@ -18,10 +18,7 @@
 
 package org.eclipse.ecsp.domain;
 
-import org.eclipse.ecsp.domain.DmaResponse.Response;
-import org.eclipse.ecsp.entities.dma.DeviceMessageErrorCode;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
 
 /**
  * Common Event Constants.
