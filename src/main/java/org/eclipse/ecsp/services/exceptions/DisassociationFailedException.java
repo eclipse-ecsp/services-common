@@ -30,11 +30,22 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class DisassociationFailedException extends Exception {
     
     private static final long serialVersionUID = -6856642719277283639L;
-    
+
+    /**
+     * Constructor for {@link DisassociationFailedException}.
+     *
+     * @param message the message
+     */
     public DisassociationFailedException(String message) {
         super(message);
     }
-    
+
+    /**
+     * Constructor for {@link DisassociationFailedException}.
+     *
+     * @param message the message
+     * @param cause   the cause
+     */
     public DisassociationFailedException(String message, String cause) {
         super(message, new Throwable(cause));
     }

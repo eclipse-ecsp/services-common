@@ -36,7 +36,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import static org.eclipse.ecsp.services.constants.Constants.USER_ID_UNKNOWN;
+import static org.eclipse.ecsp.domain.Constants.USER_ID_UNKNOWN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 

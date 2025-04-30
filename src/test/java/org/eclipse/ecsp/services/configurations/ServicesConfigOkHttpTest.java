@@ -61,7 +61,7 @@ class ServicesConfigOkHttpTest extends ServicesConfigTestBase {
     }
     
     @Test
-    void responseOk() throws Exception {
+    void responseOk() {
         server.enqueue(
             new MockResponse().setResponseCode(RESPONSE_CODE_200).setBody("ok")
         );
@@ -93,7 +93,7 @@ class ServicesConfigOkHttpTest extends ServicesConfigTestBase {
             restTemplate.getForEntity(uri, String.class);
             Assertions.fail("Expected ResourceAccessException");
         } catch (ResourceAccessException e) {
-            Assertions.assertTrue( () -> StringUtils.contains(e.getMessage(), "Read timed out"));
+            Assertions.assertTrue(() -> StringUtils.contains(e.getMessage(), "Read timed out"));
         }
     }
     
@@ -101,6 +101,6 @@ class ServicesConfigOkHttpTest extends ServicesConfigTestBase {
     void connectionPoolTimeoutException() throws Exception {
         Map<String, Integer> requestCountMap = multiRequests(restTemplate, server, LOOP_COUNT, LOGGER);
         
-        assertEquals(0,requestCountMap.getOrDefault("ConnectionPoolTimeoutException", 0));
+        assertEquals(0, requestCountMap.getOrDefault("ConnectionPoolTimeoutException", 0));
     }
 }

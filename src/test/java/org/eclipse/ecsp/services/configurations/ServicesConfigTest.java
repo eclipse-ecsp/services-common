@@ -94,7 +94,7 @@ class ServicesConfigTest extends ServicesConfigTestBase {
             restTemplate.getForEntity(uri, String.class);
             Assertions.fail("Expected ResourceAccessException");
         } catch (ResourceAccessException e) {
-            Assertions.assertTrue( () -> StringUtils.contains(e.getMessage(), "Read timed out"));
+            Assertions.assertTrue(() -> StringUtils.contains(e.getMessage(), "Read timed out"));
         }
     }
 

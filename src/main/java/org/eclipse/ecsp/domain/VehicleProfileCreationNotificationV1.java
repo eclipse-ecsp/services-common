@@ -21,7 +21,6 @@ package org.eclipse.ecsp.domain;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.eclipse.ecsp.annotations.EventMapping;
 import org.eclipse.ecsp.entities.GenericEventData;
-import org.eclipse.ecsp.services.constants.Constants;
 
 /**
  * Pojo for VEHICLE_PROFILE_CREATED_NOTIFICATION_EVENT ignite event.

@@ -142,12 +142,28 @@ public class JsonMapperUtils {
         mapper.registerModule(new JavaTimeModule());
         return mapper;
     }
-    
+
+    /**
+     * convert provided object to using provided filter.
+     *
+     * @param name filter name
+     * @param object java object for json serialization
+     * @return java.util.Map representation of json
+     * @throws JsonProcessingException if conversion fails.
+     */
     public static String applyExcludefilterAndGetAsString(String name, Object object)
         throws JsonProcessingException {
         return MAPPER_MAP.get(name).writeValueAsString(object);
     }
-    
+
+    /**
+     * convert provided json string to bytes.
+     *
+     * @param name json string
+     * @param object java object for json serialization
+     * @return java.util.Map representation of json
+     * @throws JsonProcessingException if conversion fails.
+     */
     public static byte[] applyExcludefilterAndGetAsByte(String name, Object object)
         throws JsonProcessingException {
         return MAPPER_MAP.get(name).writeValueAsBytes(object);

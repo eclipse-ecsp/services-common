@@ -53,6 +53,11 @@ public class SettingsManagerClient {
     @Value("${http.sm.url:localhost}")
     private String settingsManagerEndPoint;
 
+    /**
+     * Constructor for {@link SettingsManagerClient}.
+     *
+     * @param restTemplate the rest template
+     */
     public SettingsManagerClient(@Qualifier("servicesCommonRestTemplate") RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }

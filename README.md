@@ -53,7 +53,7 @@ To build the project in the local working directory after the project has been c
   </parent>
 ```
 
-* Ignite Cache
+* Cache Enabler
 
 ```xml
  <dependency>

@@ -19,6 +19,7 @@
 package org.eclipse.ecsp.services.utils;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.eclipse.ecsp.domain.Constants;
 import org.eclipse.ecsp.domain.VehicleProfileNotificationEventDataV1_1;
 import org.eclipse.ecsp.entities.IgniteEntity;
 import org.eclipse.ecsp.entities.IgniteEventImpl;
@@ -26,7 +27,6 @@ import org.eclipse.ecsp.nosqldao.IgniteQuery;
 import org.eclipse.ecsp.nosqldao.mongodb.IgniteBaseDAOMongoImpl;
 import org.eclipse.ecsp.services.ServiceCommonTestConfig;
 import org.eclipse.ecsp.services.ServicesTestBase;
-import org.eclipse.ecsp.services.constants.Constants;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -162,9 +162,10 @@ class VehicleProfileChangedNotiEventUtilTest extends ServicesTestBase {
         kv.put(Constants.MAP_KEY_VEHICLE_ID_PATH, "event.vehicleId");
         kv.put(Constants.MAP_KEY_USER_ID_PATH, "event.eventData.userId");
         
-        ImmutablePair<IgniteBaseDAOMongoImpl<? , ? extends IgniteEntity>, Map<String, String>> pair =
-            new ImmutablePair<>(igniteBaseDaoMongo, kv);
-        List<ImmutablePair<IgniteBaseDAOMongoImpl<?, ? extends IgniteEntity>, Map<String, String>>> list = List.of(pair);
+        ImmutablePair<IgniteBaseDAOMongoImpl<?, ? extends IgniteEntity>,
+                Map<String, String>> pair = new ImmutablePair<>(igniteBaseDaoMongo, kv);
+        List<ImmutablePair<IgniteBaseDAOMongoImpl<?, ? extends IgniteEntity>,
+                Map<String, String>>> list = List.of(pair);
         
         util.deleteData(igniteEvent, list);
         

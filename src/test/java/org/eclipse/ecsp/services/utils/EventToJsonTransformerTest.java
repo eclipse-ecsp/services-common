@@ -35,9 +35,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@DisplayName("Test if IgniteEventTransformer works fine with sample json")
-class IgniteEventToJsonTransformerTest {
-    private static final ObjectMapper IGNITE_EVENT_JSON_MAPPER =
+@DisplayName("Test if EventTransformer works fine with sample json")
+class EventToJsonTransformerTest {
+    private static final ObjectMapper EVENT_JSON_MAPPER =
         ServiceUtil.createJsonMapperForIgniteEvent();
     
     @Test
@@ -46,7 +46,7 @@ class IgniteEventToJsonTransformerTest {
             IOUtils.toString(new ClassPathResource("/modemInfo/vehicleProfileWiFi.json").getInputStream(),
                 StandardCharsets.UTF_8);
         IgniteEventImpl igniteEvent =
-            IGNITE_EVENT_JSON_MAPPER.readValue(vehicleProfileNotification, IgniteEventImpl.class);
+            EVENT_JSON_MAPPER.readValue(vehicleProfileNotification, IgniteEventImpl.class);
         IgniteEventToJsonTransformer eventTransformer =
             new IgniteEventToJsonTransformer(Paths.get("/modemInfo/spec.json"));
         String json = eventTransformer.transform(igniteEvent);
@@ -61,7 +61,7 @@ class IgniteEventToJsonTransformerTest {
             IOUtils.toString(this.getClass().getResourceAsStream("/modemInfo/vehicleProfileWiFi.json"),
                 StandardCharsets.UTF_8);
         IgniteEventImpl igniteEvent =
-            IGNITE_EVENT_JSON_MAPPER.readValue(vehicleProfileNotification, IgniteEventImpl.class);
+            EVENT_JSON_MAPPER.readValue(vehicleProfileNotification, IgniteEventImpl.class);
         String transformSpec = "[{\"operation\":\"shift\",\"spec\":{\"Data\":"
             +
             "{\"changeDescriptions\":{\"*\":{\"key\":{\"modemInfo\":{\"@2\":{\"@(6,VehicleId)\":\"VIN\","
