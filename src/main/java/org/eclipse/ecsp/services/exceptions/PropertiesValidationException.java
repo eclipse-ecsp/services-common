@@ -26,6 +26,12 @@ import java.util.List;
  * @author eugene
  */
 public class PropertiesValidationException extends RuntimeException {
+
+    /**
+     * constructor for {@link PropertiesValidationException}.
+     *
+     * @param messages the list of error messages.
+     */
     public PropertiesValidationException(List<String> messages) {
         super("properties validation failed: " + String.join("|", messages));
     }

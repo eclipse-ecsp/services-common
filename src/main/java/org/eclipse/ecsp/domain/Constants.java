@@ -16,7 +16,7 @@
  * <p>SPDX-License-Identifier: Apache-2.0
  ********************************************************************************/
 
-package org.eclipse.ecsp.services.constants;
+package org.eclipse.ecsp.domain;
 
 import org.eclipse.ecsp.domain.DmaResponse.Response;
 import org.eclipse.ecsp.entities.dma.DeviceMessageErrorCode;

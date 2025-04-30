@@ -20,6 +20,7 @@ package org.eclipse.ecsp.services.utils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.eclipse.ecsp.domain.Constants;
 import org.eclipse.ecsp.domain.VehicleProfileNotificationEventDataV1_1;
 import org.eclipse.ecsp.entities.IgniteEntity;
 import org.eclipse.ecsp.entities.IgniteEvent;
@@ -28,7 +29,6 @@ import org.eclipse.ecsp.nosqldao.IgniteCriteriaGroup;
 import org.eclipse.ecsp.nosqldao.IgniteQuery;
 import org.eclipse.ecsp.nosqldao.Operator;
 import org.eclipse.ecsp.nosqldao.mongodb.IgniteBaseDAOMongoImpl;
-import org.eclipse.ecsp.services.constants.Constants;
 import org.eclipse.ecsp.utils.logger.IgniteLogger;
 import org.eclipse.ecsp.utils.logger.IgniteLoggerFactory;
 import org.springframework.stereotype.Component;

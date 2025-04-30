@@ -18,8 +18,6 @@
 
 package org.eclipse.ecsp.domain;
 
-import org.eclipse.ecsp.services.constants.Constants;
-
 /**
  * DeviceMessagingAgent (DMA) response pojo.
  */

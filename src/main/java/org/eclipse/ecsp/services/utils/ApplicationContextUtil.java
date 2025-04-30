@@ -58,13 +58,20 @@ public class ApplicationContextUtil implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) {
         ApplicationContextUtil.getInstance().setAppContext(applicationContext);
     }
-    
+
+    /**
+     * get the application context.
+     *
+     * @return ApplicationContext
+     */
     public ApplicationContext getAppContext() {
         return appContext;
     }
 
     /**
      * set the application context.
+     *
+     * @param appContext ApplicationContext
      */
     public void setAppContext(ApplicationContext appContext) {
         this.appContext = appContext;

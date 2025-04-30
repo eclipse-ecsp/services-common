@@ -18,22 +18,24 @@
 
 package org.eclipse.ecsp.services.utils;
 
+
+import org.apache.commons.io.IOUtils;
 import org.eclipse.ecsp.domain.AuthorizedPartnerDetail;
 import org.eclipse.ecsp.domain.ServiceClaim;
-import org.apache.commons.io.IOUtils;
 import org.eclipse.ecsp.services.ServiceCommonTestConfig;
 import org.eclipse.ecsp.services.ServicesTestBase;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.util.ReflectionTestUtils;
+import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -42,14 +44,15 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import static org.eclipse.ecsp.services.constants.Constants.DTF_VEHICLE_PROFILE;
+import static org.eclipse.ecsp.domain.Constants.DTF_VEHICLE_PROFILE;
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.eq;
-import static org.mockito.Mockito.when;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 /**
  * service util test.
@@ -76,8 +79,14 @@ class ServiceUtilAuthorizedPartnerTest extends ServicesTestBase {
     @Autowired
     private VehicleProfileClient vehicleProfileClient;
     
-    @MockitoBean
+    @Autowired
     private RestTemplate restTemplate;
+    MockRestServiceServer mockRestServiceServer;
+
+    @BeforeEach
+    void setup() {
+        mockRestServiceServer = MockRestServiceServer.createServer(restTemplate);
+    }
     
     @Test
     void getAuthorizedPartnerDetail() throws IOException {
@@ -95,10 +104,11 @@ class ServiceUtilAuthorizedPartnerTest extends ServicesTestBase {
                 ZonedDateTime.of(now.getYear(),
                     now.getMonthValue(), now.getDayOfMonth(), HOUR_23, FIFTY_NINE, FIFTY_NINE,
                     NANO_OF_SECOND_666, ZoneId.of("GMT")).format(DTF_VEHICLE_PROFILE));
-        
-        ResponseEntity response = new ResponseEntity<>(jsonContent, HttpStatus.OK);
-        when(restTemplate.getForEntity(any(String.class), eq(String.class))).thenReturn(response);
-        
+
+        mockRestServiceServer.expect(requestTo(containsString("/v1.0/vehicleProfiles/" + vehicleId)))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess(jsonContent, MediaType.APPLICATION_JSON));
+
         AuthorizedPartnerDetail detail =
             serviceUtil.getAuthorizedPartnerDetail(vehicleId, "IGNITE_TEST_EVENT", serviceId);
         
@@ -124,10 +134,11 @@ class ServiceUtilAuthorizedPartnerTest extends ServicesTestBase {
                 ZonedDateTime.of(now.getYear(), now.getMonthValue(),
                     now.getDayOfMonth(), HOUR_23, FIFTY_NINE, FIFTY_NINE,
                     NANO_OF_SECOND_666, ZoneId.of("GMT")).format(DTF_VEHICLE_PROFILE));
-        
-        ResponseEntity response = new ResponseEntity<>(jsonContent, HttpStatus.OK);
-        when(restTemplate.getForEntity(any(String.class), eq(String.class))).thenReturn(response);
-        
+
+        mockRestServiceServer.expect(requestTo(containsString("/v1.0/vehicleProfiles/" + vehicleId)))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess(jsonContent, MediaType.APPLICATION_JSON));
+
         AuthorizedPartnerDetail detail =
             serviceUtil.getAuthorizedPartnerDetail(vehicleId, "IGNITE_TEST_EVENT", serviceId);
         

@@ -30,6 +30,13 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import java.util.Map;
 
+/**
+ * MongoDB server for testing.
+ *
+ * <p>This class is responsible for starting and stopping an embedded MongoDB server
+ * using Testcontainers. It also provides methods to get the host and port of the
+ * running MongoDB instance.
+ */
 @Testcontainers
 public class MongoServer extends ExternalResource {
 

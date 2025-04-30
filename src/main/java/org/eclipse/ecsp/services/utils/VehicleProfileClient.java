@@ -36,7 +36,6 @@ import org.eclipse.ecsp.services.exceptions.VehicleProfileException;
 import org.eclipse.ecsp.utils.logger.IgniteLogger;
 import org.eclipse.ecsp.utils.logger.IgniteLoggerFactory;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -74,18 +73,18 @@ public class VehicleProfileClient {
     private static final String VEHICLE_ID = "vehicleId";
     private static final IgniteLogger LOGGER =
         IgniteLoggerFactory.getLogger(VehicleProfileClient.class);
-    public static final String FETCHING_FOR_VEHICLE = "Fetching {} for vehicle: {}";
-    public static final String ERROR_WHILE_QUERYING_JSON_PATH = "Error while querying json path {}: {}";
-    public static final String FETCHING_VEHICLE_ATTRIBUTES_FOR_VEHICLE =
+    private static final String ERROR_WHILE_QUERYING_JSON_PATH = "Error while querying json path {}: {}";
+    private static final String FETCHING_FOR_VEHICLE = "Fetching {} for vehicle: {}";
+    private static final String FETCHING_VEHICLE_ATTRIBUTES_FOR_VEHICLE =
             "Fetching vehicle attributes: {} for vehicle: {}";
-    public static final String DATA_PATH = "$.data";
-    public static final String RESPONSE_FROM_VEHICLE_PROFILE_FOR_VEHICLE_ID =
+    private static final String DATA_PATH = "$.data";
+    private static final String RESPONSE_FROM_VEHICLE_PROFILE_FOR_VEHICLE_ID =
             "Response from vehicle profile for vehicleId {}: {}";
-    public static final String ERROR_WHILE_QUERYING_VEHICLE_JSON_PATH =
+    private static final String ERROR_WHILE_QUERYING_VEHICLE_JSON_PATH =
             "Error while querying vehicle: {}, json path {}: {}";
-    public static final String FETCHED_VALUES_FOR_VEHICLE =
+    private static final String FETCHED_VALUES_FOR_VEHICLE =
             "Fetched values: {} for vehicle: {}";
-    public static final String ERROR_WHILE_QUERYING_VEHICLE_PROFILE_FOR_VEHICLE_ID =
+    private static final String ERROR_WHILE_QUERYING_VEHICLE_PROFILE_FOR_VEHICLE_ID =
             "Error while querying vehicle profile for vehicleId {}: {}";
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -102,8 +101,7 @@ public class VehicleProfileClient {
     @NotBlank
     @Value("${http.vehicles.url:localhost}")
     private String vehicleProfileClientIdEndPoint;
-    
-    //
+
     @NotBlank
     @Value("${http.disassociate.vehicle.url:localhost}")
     private String disassociateVehicleUrl;
@@ -112,6 +110,11 @@ public class VehicleProfileClient {
     @Value("${http.associate.vehicle.url:localhost}")
     private String associateVehicleUrl;
 
+    /**
+     * Constructor for {@link VehicleProfileClient}.
+     *
+     * @param restTemplate the rest template
+     */
     public VehicleProfileClient(@Qualifier("servicesCommonRestTemplate") RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }

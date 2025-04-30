@@ -20,6 +20,7 @@ package org.eclipse.ecsp.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Pojo for storing associated vehicle information.
@@ -28,22 +29,11 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class AssociatedVehicle {
-    
     private String vehicleId;
     private String role;
     private Long createdOn;
     private String status;
     private Long statusChangeTimestamp;
-    
-    @Override
-    public String toString() {
-        return "AssociatedVehicle [vehicleId="
-            + vehicleId
-            + ", role=" + role
-            + ", createdOn=" + createdOn
-            + ", status=" + status
-            + ", statusChangeTimestamp=" + statusChangeTimestamp + "]";
-    }
-    
 }

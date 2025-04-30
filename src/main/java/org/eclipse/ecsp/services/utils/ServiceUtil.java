@@ -48,8 +48,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import static org.eclipse.ecsp.services.constants.Constants.DTF_VEHICLE_PROFILE;
-import static org.eclipse.ecsp.services.constants.Constants.USER_ID_UNKNOWN;
+import static org.eclipse.ecsp.domain.Constants.DTF_VEHICLE_PROFILE;
+import static org.eclipse.ecsp.domain.Constants.USER_ID_UNKNOWN;
 
 /**
  * Utils class that can be used across all the services.
@@ -73,6 +73,11 @@ public class ServiceUtil {
     @Value("${vehicle.owner.role:VO}")
     private String vehicleOwnerRole;
 
+    /**
+     * Constructor for {@link ServiceUtil}.
+     *
+     * @param vehicleProfileClient the vehicle profile client
+     */
     public ServiceUtil(VehicleProfileClient vehicleProfileClient) {
         this.vehicleProfileClient = vehicleProfileClient;
     }
@@ -256,7 +261,15 @@ public class ServiceUtil {
         
         return userContextList;
     }
-    
+
+    /**
+     * Fetch authorized partner details from vehicle profile.
+     *
+     * @param vehicleId  vehicle unique identifier
+     * @param eventId    event id
+     * @param serviceId  service id
+     * @return authorized vehicle partner details
+     */
     public AuthorizedPartnerDetail getAuthorizedPartnerDetail(String vehicleId, String eventId,
                                                               String serviceId) {
         return getAuthorizedPartnerDetail(vehicleId, eventId, new String[] {serviceId});

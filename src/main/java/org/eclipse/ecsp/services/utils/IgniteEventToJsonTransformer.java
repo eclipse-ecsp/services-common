@@ -43,12 +43,22 @@ public class IgniteEventToJsonTransformer {
     private static final IgniteLogger LOGGER =
         IgniteLoggerFactory.getLogger(IgniteEventToJsonTransformer.class);
     private final Chainr chainr;
-    
+
+    /**
+     * Constructor for {@link IgniteEventToJsonTransformer}.
+     *
+     * @param specFileResourcePath the path to the json specification file
+     */
     public IgniteEventToJsonTransformer(final Path specFileResourcePath) {
         Objects.requireNonNull(specFileResourcePath, "spec file path cannot be null");
         chainr = loadSpec(specFileResourcePath.toString());
     }
-    
+
+    /**
+     * Constructor for {@link IgniteEventToJsonTransformer}.
+     *
+     * @param jsonSpec the JSON specification as a string
+     */
     public IgniteEventToJsonTransformer(final String jsonSpec) {
         Objects.requireNonNull(jsonSpec);
         chainr = loadSpecFromJson(jsonSpec);

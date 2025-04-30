@@ -46,7 +46,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import java.io.IOException;
 import java.net.URI;
 import java.util.HashSet;
 import java.util.List;
@@ -71,6 +70,7 @@ import static org.mockito.Mockito.when;
 class VehicleProfileClientUnitTest extends ServicesTestBase {
     public static final int EXPECTED_30 = 13;
     public static final int INT10 = 10;
+    public static final String CLIENT_ID = "client-id";
     @Autowired
     private VehicleProfileClient vehicleProfileClient;
     
@@ -119,7 +119,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
         
         Optional<String> optSr = vals.get(VehicleProfileAttribute.SOLD_REGION);
         assertTrue(optSr.isPresent());
-        assertNotNull( optSr.get());
+        assertNotNull(optSr.get());
     }
     
     @Test
@@ -176,7 +176,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
             eq(String.class)
         )).thenReturn(responseEntity);
         
-        Optional<String> val = vehicleProfileClient.getVehicleProfileAttrWithClientId("client-id",
+        Optional<String> val = vehicleProfileClient.getVehicleProfileAttrWithClientId(CLIENT_ID,
             VehicleProfileAttribute.USERID, true);
         
         assertTrue(val.isPresent());
@@ -190,7 +190,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
             .thenReturn(responseEntity);
         
         assertThrows(RuntimeException.class, () -> {
-            vehicleProfileClient.getVehicleProfileAttrWithClientId("client-id",
+            vehicleProfileClient.getVehicleProfileAttrWithClientId(CLIENT_ID,
                 VehicleProfileAttribute.USERID, false);
         });
     }
@@ -202,7 +202,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
             .thenReturn(responseEntity);
         
         assertThrows(RuntimeException.class, () -> {
-            vehicleProfileClient.getVehicleProfileAttrWithClientId("client-id",
+            vehicleProfileClient.getVehicleProfileAttrWithClientId(CLIENT_ID,
                 VehicleProfileAttribute.USERID, false);
         });
     }
@@ -214,7 +214,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
         when(restTemplate.getForEntity(anyString(), eq(String.class)))
             .thenReturn(responseEntity);
         
-        Optional<VehicleProfile> val = vehicleProfileClient.getVehicleProfile("client-id");
+        Optional<VehicleProfile> val = vehicleProfileClient.getVehicleProfile(CLIENT_ID);
         
         assertFalse(val.isEmpty());
         assertEquals("test-vin", val.get().getVin());
@@ -228,7 +228,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
             .thenReturn(responseEntity);
         
         assertThrows(RuntimeException.class, () -> {
-            vehicleProfileClient.getVehicleProfile("client-id");
+            vehicleProfileClient.getVehicleProfile(CLIENT_ID);
         });
     }
     
@@ -239,7 +239,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
         when(restTemplate.getForEntity(anyString(), eq(String.class)))
             .thenReturn(responseEntity);
         
-        Optional<VehicleProfile> val = vehicleProfileClient.getVehicleProfile("client-id");
+        Optional<VehicleProfile> val = vehicleProfileClient.getVehicleProfile(CLIENT_ID);
         
         assertTrue(val.isEmpty());
     }
@@ -251,7 +251,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
             .thenReturn(responseEntity);
         
         assertThrows(RuntimeException.class, () -> {
-            vehicleProfileClient.getVehicleProfileJson("client-id");
+            vehicleProfileClient.getVehicleProfileJson(CLIENT_ID);
         });
     }
     
@@ -271,12 +271,11 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
     void updateVehicleProfile_Exception() {
         when(restTemplate.patchForObject(anyString(), isA(VehicleProfile.class), eq(String.class)))
             .thenThrow(new RestClientException("exception when patchForObject"));
-
-        try{
-            VehicleProfile vp = new VehicleProfile();
+        VehicleProfile vp = new VehicleProfile();
+        try {
             vehicleProfileClient.updateVehicleProfile("vehicle-id", vp, false);
             Assertions.fail("Expected VehicleProfileException");
-        }catch (VehicleProfileException e) {
+        } catch (VehicleProfileException e) {
             assertTrue(StringUtils.contains(e.getMessage(), "exception when patchForObject"));
         }
     }
@@ -309,7 +308,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
                 VehicleProfileAttribute.HU_CLIENT_ID);
         
         assertTrue(val.get(VehicleProfileAttribute.HU_CLIENT_ID).isPresent());
-        assertEquals("client-id", val.get(VehicleProfileAttribute.HU_CLIENT_ID).get());
+        assertEquals(CLIENT_ID, val.get(VehicleProfileAttribute.HU_CLIENT_ID).get());
     }
     
     @Test
@@ -366,7 +365,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
             .thenReturn(responseEntity);
         
         Map<VehicleProfileAttribute, Optional<String>> map =
-            vehicleProfileClient.getVehicleProfileAttributesWithClientId("client-id", false,
+            vehicleProfileClient.getVehicleProfileAttributesWithClientId(CLIENT_ID, false,
                 VehicleProfileAttribute.MAKE);
         
         assertTrue(map.get(VehicleProfileAttribute.MAKE).isPresent());
@@ -382,7 +381,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
             .thenReturn(responseEntity);
         
         Map<VehicleProfileAttribute, Optional<String>> map =
-            vehicleProfileClient.getVehicleProfileAttributesWithClientId("client-id", true,
+            vehicleProfileClient.getVehicleProfileAttributesWithClientId(CLIENT_ID, true,
                 VehicleProfileAttribute.MAKE);
         
         assertTrue(map.get(VehicleProfileAttribute.MAKE).isEmpty());
@@ -397,7 +396,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
             .thenReturn(responseEntity);
         
         assertThrows(RuntimeException.class, () -> {
-            vehicleProfileClient.getVehicleProfileAttributesWithClientId("client-id", false,
+            vehicleProfileClient.getVehicleProfileAttributesWithClientId(CLIENT_ID, false,
                 VehicleProfileAttribute.MAKE);
         });
     }
@@ -411,7 +410,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
             .thenReturn(responseEntity);
         
         assertThrows(RuntimeException.class, () -> {
-            vehicleProfileClient.getVehicleProfileAttributesWithClientId("client-id", false,
+            vehicleProfileClient.getVehicleProfileAttributesWithClientId(CLIENT_ID, false,
                 VehicleProfileAttribute.MAKE);
         });
     }
@@ -424,7 +423,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
             .thenReturn(responseEntity);
         
         assertThrows(RuntimeException.class, () -> {
-            vehicleProfileClient.getVehicleProfileJsonWithClientId("client-id");
+            vehicleProfileClient.getVehicleProfileJsonWithClientId(CLIENT_ID);
         });
     }
     
@@ -526,7 +525,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
         VehicleProfileOnDemandAttribute vehicleProfileOnDemandAttribute =
             new VehicleProfileOnDemandAttribute("ABCD", "$.data.vehicleAttributes.ABCD", String.class);
         Map<String, Optional<?>> map =
-            vehicleProfileClient.getVehicleProfileAttributesWithClientId("client-id", false,
+            vehicleProfileClient.getVehicleProfileAttributesWithClientId(CLIENT_ID, false,
                 vehicleProfileOnDemandAttribute);
         
         Optional<?> opt = map.get(vehicleProfileOnDemandAttribute.getName());
@@ -541,16 +540,15 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
         
         when(restTemplate.getForEntity(anyString(), eq(String.class)))
             .thenReturn(responseEntity);
-
-        try{
-            VehicleProfileOnDemandAttribute vehicleProfileOnDemandAttribute =
-                    new VehicleProfileOnDemandAttribute("ABCD", "$.data.vehicleAttributes.ABCD",
-                            String.class);
-            vehicleProfileClient.getVehicleProfileAttributesWithClientId("client-id", false,
+        VehicleProfileOnDemandAttribute vehicleProfileOnDemandAttribute =
+                new VehicleProfileOnDemandAttribute("ABCD", "$.data.vehicleAttributes.ABCD",
+                        String.class);
+        try {
+            vehicleProfileClient.getVehicleProfileAttributesWithClientId(CLIENT_ID, false,
                     vehicleProfileOnDemandAttribute);
             Assertions.fail("Expected VehicleProfileException");
         } catch (VehicleProfileException e) {
-            Assertions.assertTrue( () -> StringUtils.contains(e.getMessage(), "No results for path"));
+            Assertions.assertTrue(() -> StringUtils.contains(e.getMessage(), "No results for path"));
         }
     }
     
@@ -562,15 +560,16 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
         when(restTemplate.getForEntity(anyString(), eq(String.class)))
             .thenReturn(responseEntity);
 
-        try{
-            VehicleProfileOnDemandAttribute vehicleProfileOnDemandAttribute =
-                    new VehicleProfileOnDemandAttribute("ABCD", "$.data.vehicleAttributes.ABCD",
-                            String.class);
-            vehicleProfileClient.getVehicleProfileAttributesWithClientId("client-id", false,
+        VehicleProfileOnDemandAttribute vehicleProfileOnDemandAttribute =
+                new VehicleProfileOnDemandAttribute("ABCD", "$.data.vehicleAttributes.ABCD",
+                        String.class);
+        try {
+            vehicleProfileClient.getVehicleProfileAttributesWithClientId(CLIENT_ID, false,
                     vehicleProfileOnDemandAttribute);
             Assertions.fail("Expected VehicleProfileException");
         } catch (VehicleProfileException e) {
-            Assertions.assertTrue( () -> StringUtils.contains(e.getMessage(), "Failed to find vehicle profile for client id: client-id"));
+            Assertions.assertTrue(() ->
+                    StringUtils.contains(e.getMessage(), "Failed to find vehicle profile for client id: client-id"));
         }
     }
     
@@ -601,14 +600,14 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
         when(restTemplate.getForEntity(anyString(), eq(String.class)))
             .thenReturn(responseEntity);
 
-        try{
-            VehicleProfileOnDemandAttribute attributeAbcd =
-                    new VehicleProfileOnDemandAttribute("ABCD", "$.data.vehicleAttributes.ABCD",
-                            Boolean.class);
+        VehicleProfileOnDemandAttribute attributeAbcd =
+                new VehicleProfileOnDemandAttribute("ABCD", "$.data.vehicleAttributes.ABCD",
+                        Boolean.class);
+        try {
             vehicleProfileClient.getVehicleProfileAttributes("vehicle-id", false, attributeAbcd);
             Assertions.fail("Expected VehicleProfileException");
-        } catch (VehicleProfileException e){
-            Assertions.assertTrue( () -> StringUtils.contains(e.getMessage(), "Missing property in path"));
+        } catch (VehicleProfileException e) {
+            Assertions.assertTrue(() -> StringUtils.contains(e.getMessage(), "Missing property in path"));
         }
     }
     
@@ -673,7 +672,7 @@ class VehicleProfileClientUnitTest extends ServicesTestBase {
         
         Set huService = (Set) vals.get(VehicleProfileAttribute.HU_PROVISIONED_SERVICES).get();
         String msidn = (String) vals.get(VehicleProfileAttribute.MSISDN).get();
-        assertEquals( "12345", msidn);
+        assertEquals("12345", msidn);
         assertNotNull(huService);
         assertEquals(INT10, huService.size());
     }

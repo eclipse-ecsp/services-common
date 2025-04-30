@@ -59,6 +59,7 @@ class VehicleProfileUnitTest extends ServicesTestBase {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     public static final long EXPECTED_DATE_1 = 1572436732000L;
     public static final long EXPECTED_DATE_2 = 1572436732000L;
+
     @Autowired
     private VehicleProfileClient vehicleProfileClient;
     @MockitoBean
