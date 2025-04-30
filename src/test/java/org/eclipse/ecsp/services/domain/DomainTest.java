@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * Test class for {@link DmaResponse} and {@link Application}.
  */
-public class DomainTest {
+class DomainTest {
 
     @Test
     void testApplicationDomains() {
