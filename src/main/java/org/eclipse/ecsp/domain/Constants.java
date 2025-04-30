@@ -135,18 +135,6 @@ public class Constants {
     public static final String DEFAULT_PROVIDER = "DEFAULT";
 
     /**
-     * error response map contains all the error status.
-     */
-    public static final Map<DeviceMessageErrorCode, Response> ERROR_RESPONSE = Map.of(
-        DeviceMessageErrorCode.DEVICE_DELIVERY_CUTOFF_EXCEEDED,
-        Response.FAIL_MESSAGE_DELIVERY_TIMED_OUT,
-        DeviceMessageErrorCode.DEVICE_STATUS_INACTIVE,
-        Response.FAIL_VEHICLE_NOT_CONNECTED, DeviceMessageErrorCode.RETRY_ATTEMPTS_EXCEEDED,
-        Response.FAIL_DELIVERY_RETRYING
-    );
-    
-    // VehicleProfileChangedNotificationEventUtil query path
-    /**
      * MAP_KEY_USER_ID_PATH.
      */
     public static final String MAP_KEY_USER_ID_PATH = "MAP_KEY_USER_ID_PATH";

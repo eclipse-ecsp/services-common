@@ -18,6 +18,9 @@
 
 package org.eclipse.ecsp.domain;
 
+import org.eclipse.ecsp.entities.dma.DeviceMessageErrorCode;
+import java.util.Map;
+
 /**
  * DeviceMessagingAgent (DMA) response pojo.
  */
@@ -73,4 +76,15 @@ public class DmaResponse {
             return this.value;
         }
     }
+
+    /**
+     * error response map contains all the error status.
+     */
+    public static final Map<DeviceMessageErrorCode, Response> ERROR_RESPONSE = Map.of(
+            DeviceMessageErrorCode.DEVICE_DELIVERY_CUTOFF_EXCEEDED,
+            Response.FAIL_MESSAGE_DELIVERY_TIMED_OUT,
+            DeviceMessageErrorCode.DEVICE_STATUS_INACTIVE,
+            Response.FAIL_VEHICLE_NOT_CONNECTED, DeviceMessageErrorCode.RETRY_ATTEMPTS_EXCEEDED,
+            Response.FAIL_DELIVERY_RETRYING
+    );
 }
