@@ -24,8 +24,14 @@ import java.util.Map;
 /**
  * DeviceMessagingAgent (DMA) response pojo.
  */
+
 public class DmaResponse {
-    
+
+    /**
+     * private constructor for {@link DmaResponse}.
+     */
+    private DmaResponse() {}
+
     /**
      * Possible response status from DMA.
      */
