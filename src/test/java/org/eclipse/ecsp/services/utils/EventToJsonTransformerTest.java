@@ -27,13 +27,19 @@ import org.eclipse.ecsp.services.exceptions.TransformerException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.ClassRelativeResourceLoader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("Test if EventTransformer works fine with sample json")
 class EventToJsonTransformerTest {
@@ -47,8 +53,13 @@ class EventToJsonTransformerTest {
                 StandardCharsets.UTF_8);
         IgniteEventImpl igniteEvent =
             EVENT_JSON_MAPPER.readValue(vehicleProfileNotification, IgniteEventImpl.class);
+        ClassRelativeResourceLoader resourceLoader =
+            new ClassRelativeResourceLoader(ServiceUtil.class);
+        Resource resource = resourceLoader.getResource("/modemInfo/spec.json");
+        assertTrue(resource.exists());
+
         IgniteEventToJsonTransformer eventTransformer =
-            new IgniteEventToJsonTransformer(Paths.get("/modemInfo/spec.json"));
+            new IgniteEventToJsonTransformer(IOUtils.toString(resource.getInputStream(), StandardCharsets.UTF_8));
         String json = eventTransformer.transform(igniteEvent);
         assertFalse(StringUtils.isEmpty(json));
         assertEquals(JsonUtils.classpathToObject("/modemInfo/wifi.json"),
