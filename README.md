@@ -8,7 +8,6 @@
 
 services-common is a Java library that is used in stream processor microservices. It provides some common functionality.
 
-* SettingsManagerClient for integration with Settingmgmt microservice
 * VehicleProfileClient for integration with Vehicle-Profile microservice
 * Custom Codec for MongoDB
 * JsonMapperUtils for providing JSON Serialization and deserialization with custom filter
@@ -27,7 +26,6 @@ services-common is a Java library that is used in stream processor microservices
 * [Troubleshooting](#troubleshooting)
 * [License](#license)
 * [Announcements](#announcements)
-* [Acknowledgments](#acknowledgments)
 
 ## Getting Started
 
@@ -37,8 +35,8 @@ To build the project in the local working directory after the project has been c
 
 ### Prerequisites
 
-* [Java jdk 17+](https://jdk.java.net/archive/)
-* [Maven 3.6](https://maven.apache.org/)
+* [Java jdk 17+](https://www.azul.com/downloads/?version=java-17-lts&package=jdk#zulu)
+* [Maven 3.6 or higher](https://maven.apache.org/)
 
 #### dependencies on other modules
 
@@ -103,14 +101,36 @@ Step 3 : add services-common dependency to sp microservices
   <dependency>
     <groupId>org.eclipse.ecsp</groupId>
     <artifactId>services-common</artifactId>
-    <version>3.0.XX</version> <!-- release version -->
+    <version>1.0.XX</version> <!-- release version -->
   </dependency>
 ```
 
-#### Coding style check configuration
-[checkstyle.xml](./checkstyle.xml) is the HARMAN coding standard for writing new code or updating existing code.
+### Coding style check configuration
+
+Describe the details for configuring a style check in the IDE.
+* Eclipse: You can install the tool via the marketplace for Checkstyle Marketplace entry Or you can install into via Help  Install new Software menu entry by using the following update site: https://checkstyle.org/eclipse-cs-update-site
+* IntelliJ: Checkstyle plugin in IntelliJ provides both real-time and on-demand scanning of Java files with Checkstyle from within IDEA.
+
+#### Using Checkstyle in the Eclipse IDE
+1. Right-click on your project and select Checkstyle. Check code with Checkstyle.<br/>
+2. Then open the Checkstyle views to view the reported issues via Windows Show View Others  Checkstyle menu.<br/>
+3. Open the Checkstyle violations view to view the details or the Checkstyle violations chart to view a graphical overview of the issues.<br/>
+4. In the Checkstyle violations view, double-click a violation to display an individual issue. Double-click an individual issue to display it. Use the **Back** button to return to the previous page.<br/>
+
+#### Add checkstyle.xml to project
+1. After installing the Checkstype plugin and restarting the IDE, you can view Checkstyle in the bottom tab.
+2. To add a custom checkstyle.xml, click the PLUS (+) in File → Settings → Tools → Checkstyle.
+3. Select the **dir** icon to run for entire project or run with the **PLAY** button for a single file opened in the tab.<br>
+
+
+[checkstyle.xml](./checkstyle.xml) is the coding standard for writing new code or updating existing code.
 
 Checkstyle plugin [maven-checkstyle-plugin:3.3.1](https://maven.apache.org/plugins/maven-checkstyle-plugin/) is integrated in [pom.xml](./pom.xml) which runs in the `validate` phase and `check` goal of the maven lifecycle and fails the build if there are any checkstyle errors in the project.
+
+To run checkstyle plugin explicitly, run the following command:
+```shell
+mvn checkstyle:check
+```
 
 ### Running the Tests
 
@@ -154,24 +174,6 @@ code
     
     // get vehicle profile by ecu clientId
     vehicleProfileClient.getVehicleProfileAttrWithClientId(vehicleId,vehicleProfileAttributes);
-```
-
-#### SettingsManagerClient:
-The SettingsManagerClient provides a utility method to interact and fetch information from Settingsmgmt microservices. It helps to maintain and fetch the Vehicle eCall and  bCall stocking rules and configurations.
-
-
-configuration
-```properties
-http.sm.url=
-```
-
-code
-```java
-    @Autowire
-    private SettingsManagerClient settingsManagerClient;
-    
-    // Fetch settings management configuration for a vehicle.
-    settingsManagerClient.getSettingsManagerConfigurationObject(userId, vehicleId, settingId, configKey);
 ```
 
 #### RestTemplate configuration:
@@ -249,7 +251,7 @@ and the process for submitting pull requests to us.
 ## Authors
 
 * **Eugene Jiang** - *Initial work*
-* **Abhishek Kumar** - *Initial work*
+* **[Abhishek Kumar](https://github.com/abhishekkumar-harman)** - *Initial work*
 * **Charles Zhu** - *Initial work*
 * **Leon Chen** - *Initial work*
 * **Shubhangi Shukla** - *Initial work*
